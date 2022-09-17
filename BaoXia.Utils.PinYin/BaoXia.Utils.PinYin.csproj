@@ -4,8 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <FileVersion>1.0.0</FileVersion>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>BaoXia.Utils.PinYin</Title>
     <Description>.Net 中文拼音库，提供了41450个常用汉字的常用拼音字典。</Description>
@@ -16,6 +16,10 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <IncludeSymbols>False</IncludeSymbols>
+    <PackageReleaseNotes>新增了拼音功能相关的字符串扩展类“BaoXia.Utils.PinYin.Extension.StringExtension”。</PackageReleaseNotes>
+    <Authors>石家庄宝匣软件科技有限公司</Authors>
+    <Company>石家庄宝匣软件科技有限公司</Company>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
