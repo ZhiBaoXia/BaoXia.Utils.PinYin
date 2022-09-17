@@ -34,53 +34,19 @@ namespace BaoXia.Utils.PinYin
                 #region 类方法
 
                 /// <summary>
-                /// 字符串比较规则：首先，按长度由短到长，其次，按字符数值由小到大。
+                /// 获取指定汉字的拼音信息。
                 /// </summary>
-                /// <param name="charsA">指定的字符数组A。</param>
-                /// <param name="charsB">指定的字符数组B。</param>
-                /// <returns>返回值小于“0”时，指定的字符数组A应在指定的字符数组B之前，
-                /// 返回值大于“0”时，指定的字符数组A应在指定的字符数组B之后，
-                /// 返回值等于“0”时，指定的字符数组A和指定的字符数组B应当在同一未知。</returns>
-                public static int CompareChars(char[] charsA, char[] charsB)
-                {
-                        if (charsA == charsB)
-                        {
-                                return 0;
-                        }
-
-                        var charsALength = charsA?.Length ?? 0;
-                        var charsBLength = charsB?.Length ?? 0;
-
-                        if (charsALength > charsBLength)
-                        {
-                                return 1;
-                        }
-                        else if (charsALength < charsBLength)
-                        {
-                                return -1;
-                        }
-                        else if (charsA != null
-                                && charsB != null)
-                        {
-                                for (var charIndex = 0;
-                                        charIndex < charsALength;
-                                        charIndex++)
-                                {
-                                        var charA = charsA[charIndex];
-                                        var charB = charsB[charIndex];
-                                        if (charA > charB)
-                                        {
-                                                return 1;
-                                        }
-                                        else if (charA < charB)
-                                        {
-                                                return -1;
-                                        }
-                                }
-                        }
-                        return 0;
-                }
-
+                /// <param name="objectChineseCharacter">指定的汉字字符，生僻字可能占用2个字符。</param>
+                /// <param name="charsEndSymbol">字符终止符号。</param>
+                /// <param name="allPinYins">指定的全部拼音表。</param>
+                /// <param name="pinYinUnitLength">指定的全部拼音表的拼音单元字符长度。</param>
+                /// <param name="allPinYinWithSounds">指定的全部拼音（含音标）表。</param>
+                /// <param name="pinYinWithSoundUnitLength">指定的全部拼音表（含音标）的拼音单元字符长度。</param>
+                /// <param name="allChineseChars">全部的汉字表。</param>
+                /// <param name="chineseCharUnitLength">全部汉字表的单元字符长度。</param>
+                /// <param name="allChineseCharacterPinYinIndexes">全部汉字拼音索引表。</param>
+                /// <param name="allChineseCharacterPinYinWithSoundIndexes">全部汉字拼音（含音标）索引表。</param>
+                /// <returns>返回指定的汉字字符对应的拼音信息。</returns>
                 public static ChinesePinYinInfo? GetPinYinInfoWithChineseCharacter(
                         string objectChineseCharacter,
                         //
@@ -283,6 +249,11 @@ namespace BaoXia.Utils.PinYin
                                 ChinesePinYinInfes_01.AllChineseCharacterPinYinWithSoundIndexes);
                 }
 
+                /// <summary>
+                /// 获取指定汉字的全部拼音信息。
+                /// </summary>
+                /// <param name="objectChineseCharacter">指定的汉字字符，生僻字可能占用2个字符。</param>
+                /// <returns>获取指定汉字的全部拼音信息。</returns>
                 public static List<ChinesePinYinInfo>? GetPinYinInfesWithChineseCharacter(
                         string objectChineseCharacter)
                 {
@@ -554,6 +525,213 @@ namespace BaoXia.Utils.PinYin
                         }
                         return pinYinInfes;
                 }
+
+                /// <summary>
+                /// 获取在字符串中指定位置上的汉字的拼音信息。
+                /// </summary>
+                /// <param name="str">指定的字符串。</param>
+                /// <param name="charIndex">要获取拼音信息的汉字的索引值。</param>
+                /// <param name="chineseCharacterCharLength">返回拼音信息对应的中文字符的长度，某些生僻字需要2个字符。</param>
+                /// <returns>返回在字符串中指定位置上的汉字的拼音信息。</returns>
+                public static ChinesePinYinInfo? GetPinYinInfoOfChineseCharacterAtIndexInString(
+                        string? str,
+                        int charIndex,
+                        out int chineseCharacterCharLength)
+                {
+                        chineseCharacterCharLength = 0;
+
+                        if (string.IsNullOrEmpty(str))
+                        {
+                                return null;
+                        }
+                        if (charIndex < 0
+                                || charIndex >= str.Length)
+                        {
+                                return null;
+                        }
+
+                        var chineseCharacterBeginCharIndex = charIndex;
+                        for (var chineseCharacterCharIndex = 0;
+                                chineseCharacterCharIndex < ChinesePinYinInfes_01.ChineseCharacterUnitLength;
+                                chineseCharacterCharIndex++)
+                        {
+                                if ((charIndex + chineseCharacterCharIndex) >= str.Length)
+                                {
+                                        return null;
+                                }
+
+                                var chineseCharacterCharLengthToTryGetPinYinInfo
+                                        = (chineseCharacterCharIndex + 1);
+                                var chineseCharacter = str.Substring(
+                                        chineseCharacterBeginCharIndex,
+                                        chineseCharacterCharLengthToTryGetPinYinInfo);
+
+                                var pinYinYinfo = ChinesePinYinInfo.GetPinYinInfoWithChineseCharacter(chineseCharacter);
+                                if (pinYinYinfo != null)
+                                {
+                                        // !!!
+                                        chineseCharacterCharLength = chineseCharacterCharLengthToTryGetPinYinInfo;
+                                        // !!!
+                                        return pinYinYinfo;
+                                }
+                        }
+                        return null;
+                }
+
+                /// <summary>
+                /// 获取在字符串中指定位置上的汉字的全部拼音信息。
+                /// </summary>
+                /// <param name="str">指定的字符串。</param>
+                /// <param name="charIndex">要获取拼音信息的汉字的索引值。</param>
+                /// <param name="chineseCharacterCharLength">返回拼音信息对应的中文字符的长度，某些生僻字需要2个字符。</param>
+                /// <returns>返回在字符串中指定位置上的汉字的全部拼音信息。</returns>
+                public static List<ChinesePinYinInfo>? GetPinYinInfesOfChineseCharacterAtIndexInString(
+                        string? str,
+                        int charIndex,
+                        out int chineseCharacterCharLength)
+                {
+                        chineseCharacterCharLength = 0;
+
+                        if (string.IsNullOrEmpty(str))
+                        {
+                                return null;
+                        }
+                        if (charIndex < 0
+                                || charIndex >= str.Length)
+                        {
+                                return null;
+                        }
+
+                        var chineseCharacterBeginCharIndex = charIndex;
+                        for (var chineseCharacterCharIndex = 0;
+                                chineseCharacterCharIndex < ChinesePinYinInfes_01.ChineseCharacterUnitLength;
+                                chineseCharacterCharIndex++)
+                        {
+                                if ((charIndex + chineseCharacterCharIndex) >= str.Length)
+                                {
+                                        return null;
+                                }
+
+                                var chineseCharacterCharLengthToTryGetPinYinInfo
+                                        = (chineseCharacterCharIndex + 1);
+                                var chineseCharacter = str.Substring(
+                                        chineseCharacterBeginCharIndex,
+                                        chineseCharacterCharLengthToTryGetPinYinInfo);
+
+                                var pinYinYinfes = ChinesePinYinInfo.GetPinYinInfesWithChineseCharacter(chineseCharacter);
+                                if (pinYinYinfes != null)
+                                {
+                                        // !!!
+                                        chineseCharacterCharLength = chineseCharacterCharLengthToTryGetPinYinInfo;
+                                        // !!!
+                                        return pinYinYinfes;
+                                }
+                        }
+                        return null;
+                }
+
+                /// <summary>
+                /// 获取指定字符串的拼音信息列表，会自动识别多字符的汉字。
+                /// </summary>
+                /// <param name="str">指定的字符串。</param>
+                /// <returns>返回指定字符串的拼音信息列表，会自动识别多字符的汉字。</returns>
+                public static List<List<ChinesePinYinInfo>>? GetPinYinInfesOfString(
+                        string? str)
+                {
+                        if (string.IsNullOrEmpty(str))
+                        {
+                                return null;
+                        }
+
+                        var pinYinInfes = new List<List<ChinesePinYinInfo>>();
+                        var stringLength = str.Length;
+                        for (var charIndex = 0;
+                                charIndex < stringLength;)
+                        {
+                                if (ChinesePinYinInfo.GetPinYinInfesOfChineseCharacterAtIndexInString(
+                                        str,
+                                        charIndex,
+                                        out var chineseCharacterCharLength)
+                                        is
+                                        List<ChinesePinYinInfo> chineseCharacterPinYinInfo)
+                                {
+                                        pinYinInfes.Add(chineseCharacterPinYinInfo);
+
+                                        charIndex
+                                                += chineseCharacterCharLength > 0
+                                                ? chineseCharacterCharLength
+                                                : 1;
+                                }
+                                else
+                                {
+                                        charIndex++;
+                                }
+                        }
+                        return pinYinInfes;
+                }
+
+                /// <summary>
+                /// 获取指定字符串的拼音字符串，会自动识别多字符的汉字。
+                /// </summary>
+                /// <param name="str">指定的字符串。</param>
+                /// <param name="isGetPinYinFirstCharOnly">是否只获取每个拼音的首字母。</param>
+                /// <param name="pinYinSeparator">每个拼音字符串之间的分隔符，默认为不分隔。</param>
+                /// <returns>返回指定字符串的拼音字符串，会自动识别多字符的汉字。</returns>
+                public static string? GetPinYinOfString(
+                        string? str,
+                        bool isGetPinYinFirstCharOnly = false,
+                        string? pinYinSeparator = null)
+                {
+                        if (string.IsNullOrEmpty(str))
+                        {
+                                return null;
+                        }
+
+                        string? strPinYin = null;
+                        var stringLength = str.Length;
+                        for (var charIndex = 0;
+                                charIndex < stringLength;)
+                        {
+                                if (ChinesePinYinInfo.GetPinYinInfoOfChineseCharacterAtIndexInString(
+                                        str,
+                                        charIndex,
+                                        out var chineseCharacterCharLength)
+                                        is
+                                        ChinesePinYinInfo chineseCharacterPinYinInfo)
+                                {
+                                        var charPinYin = chineseCharacterPinYinInfo.PinYin;
+                                        if (isGetPinYinFirstCharOnly
+                                                && charPinYin.Length > 0)
+                                        {
+                                                charPinYin = charPinYin.Substring(0, 1);
+                                        }
+
+                                        if (strPinYin == null
+                                                || strPinYin.Length < 1)
+                                        {
+                                                strPinYin = charPinYin;
+                                        }
+                                        else
+                                        {
+                                                if (pinYinSeparator?.Length > 0)
+                                                {
+                                                        strPinYin += pinYinSeparator;
+                                                }
+                                                strPinYin += charPinYin;
+                                        }
+                                        charIndex
+                                                += chineseCharacterCharLength > 0
+                                                ? chineseCharacterCharLength
+                                                : 1;
+                                }
+                                else
+                                {
+                                        charIndex++;
+                                }
+                        }
+                        return strPinYin;
+                }
+
 
                 #endregion
 
