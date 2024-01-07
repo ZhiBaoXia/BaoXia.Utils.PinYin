@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace BaoXia.Utils.PinYin
 {
 	public class ChinesePinYinInfes_08
@@ -19,8 +13,8 @@ namespace BaoXia.Utils.PinYin
 
 		public const int ChineseCharacterUnitLength = 1;
 		public static readonly string AllChineseCharacters = "呵哪單擖敦欸湛番繆誒賁那";
-		public static readonly short[] AllChineseCharacterPinYinIndexes = new short[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 5, 9, 10};
-		public static readonly short[] AllChineseCharacterPinYinWithSoundIndexes = new short[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 5, 9, 10};
+		public static readonly short[] AllChineseCharacterPinYinIndexes = new short[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 5, 9, 10 };
+		public static readonly short[] AllChineseCharacterPinYinWithSoundIndexes = new short[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 5, 9, 10 };
 
 
 	}
