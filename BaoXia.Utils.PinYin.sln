@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaoXia.Utils.PinYin", "BaoX
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaoXia.Utils.PinYin.Test", "BaoXia.Utils.PinYin.Test\BaoXia.Utils.PinYin.Test.csproj", "{42187E95-A132-4CA7-8D76-B3C0690F953E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaoXia.Utils.PinYin.Test.Console", "BaoXia.Utils.PinYin.Test.Console\BaoXia.Utils.PinYin.Test.Console.csproj", "{201BECB7-D1D4-4502-B1D3-B692BBF43E92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{42187E95-A132-4CA7-8D76-B3C0690F953E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42187E95-A132-4CA7-8D76-B3C0690F953E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42187E95-A132-4CA7-8D76-B3C0690F953E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{201BECB7-D1D4-4502-B1D3-B692BBF43E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{201BECB7-D1D4-4502-B1D3-B692BBF43E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{201BECB7-D1D4-4502-B1D3-B692BBF43E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{201BECB7-D1D4-4502-B1D3-B692BBF43E92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
