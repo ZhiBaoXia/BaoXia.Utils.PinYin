@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <FileVersion>8.0.2</FileVersion>
-    <AssemblyVersion>8.0.2</AssemblyVersion>
+    <FileVersion>9.0.0</FileVersion>
+    <AssemblyVersion>9.0.0</AssemblyVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>BaoXia.Utils.PinYin</Title>
     <Description>.Net 中文拼音库，提供了41450个常用汉字的常用拼音字典。</Description>
@@ -19,9 +19,9 @@
     <PackageReleaseNotes>宝匣软件，汉字拼音工具库。</PackageReleaseNotes>
     <Authors>石家庄宝匣软件科技有限公司</Authors>
     <Company>石家庄宝匣软件科技有限公司</Company>
-    <Version>8.0.2</Version>
+    <Version>9.0.0</Version>
     <ApplicationIcon>BaoXia_600x600@1x.ico</ApplicationIcon>
-    <Copyright>版权所有 © 2024 石家庄宝匣软件科技有限公司</Copyright>
+    <Copyright>版权所有 © 2025 石家庄宝匣软件科技有限公司</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>宝匣;工具;拼音工具</PackageTags>
   </PropertyGroup>
