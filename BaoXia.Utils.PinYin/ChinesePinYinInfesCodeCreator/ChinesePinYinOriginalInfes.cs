@@ -8,9 +8,10 @@
 
 		#region 静态常量
 
-		public static ChinesePinYinOriginalInfo[] Infes = new ChinesePinYinOriginalInfo[]
+		public static ChinesePinYinOriginalInfo[] Infes =
+
 #if DEBUG
-                        {
+			[
 	    new ChinesePinYinOriginalInfo(){ChineseCharacter = "〇", UnicodeValue =12295, PinYin = "ling,yuan,xing", PinYinWithSound = "líng,yuán,xīng"},
 	    new ChinesePinYinOriginalInfo(){ChineseCharacter = "㐀", UnicodeValue =13312, PinYin = "qiu", PinYinWithSound = "qiū"},
 	    new ChinesePinYinOriginalInfo(){ChineseCharacter = "㐁", UnicodeValue =13313, PinYin = "tian", PinYinWithSound = "tiàn"},
@@ -41462,7 +41463,7 @@
 	    new ChinesePinYinOriginalInfo(){ChineseCharacter = "𬺈", UnicodeValue =183944, PinYin = "yi", PinYinWithSound = "yǐ"},
 	    new ChinesePinYinOriginalInfo(){ChineseCharacter = "𬺓", UnicodeValue =183955, PinYin = "chu", PinYinWithSound = "chǔ"},
 
-		};
+		];
 #else
                 {};
 #endif
