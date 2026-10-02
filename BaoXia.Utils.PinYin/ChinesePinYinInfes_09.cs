@@ -13,8 +13,8 @@ namespace BaoXia.Utils.PinYin
 
 		public const int ChineseCharacterUnitLength = 1;
 		public static readonly string AllChineseCharacters = "敦欸湛繆誒那";
-		public static readonly short[] AllChineseCharacterPinYinIndexes = new short[] { 0, 1, 2, 3, 1, 4 };
-		public static readonly short[] AllChineseCharacterPinYinWithSoundIndexes = new short[] { 0, 1, 2, 3, 1, 4 };
+		public static readonly short[] AllChineseCharacterPinYinIndexes = [0, 1, 2, 3, 1, 4];
+		public static readonly short[] AllChineseCharacterPinYinWithSoundIndexes = [0, 1, 2, 3, 1, 4];
 
 
 	}
