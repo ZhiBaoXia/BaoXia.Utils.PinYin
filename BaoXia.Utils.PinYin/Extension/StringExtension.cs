@@ -9,7 +9,7 @@ public static class StringExtension
 	/// <param name="str">当前字符串。</param>
 	/// <returns>当前字符串对应的拼音字符串列表。</returns>
 	public static List<List<string>>? ToPinYinsList(
-		this string str)
+	    this string str)
 	{
 		if (str.Length < 1)
 		{
@@ -19,7 +19,7 @@ public static class StringExtension
 
 		var pinYinInfoLists = ChinesePinYinInfo.GetPinYinInfesOfString(str);
 		if (pinYinInfoLists == null
-			|| pinYinInfoLists.Count < 1)
+		    || pinYinInfoLists.Count < 1)
 		{
 			return null;
 		}
@@ -54,8 +54,8 @@ public static class StringExtension
 	/// <param name="isNeedUpperCase">是否返回大写字母的拼音字符串。</param>
 	/// <returns>当前字符串对应的拼音字符串。</returns>
 	public static string? ToPinYin(
-		this string? str,
-		bool isNeedUpperCase = true)
+	    this string? str,
+	    bool isNeedUpperCase = true)
 	{
 		if (string.IsNullOrEmpty(str))
 		{
@@ -64,7 +64,7 @@ public static class StringExtension
 
 		var pinYin = ChinesePinYinInfo.GetPinYinOfString(str);
 		if (isNeedUpperCase
-			&& pinYin != null)
+		    && pinYin != null)
 		{
 			pinYin = pinYin.ToUpper();
 		}
@@ -77,7 +77,7 @@ public static class StringExtension
 	/// <param name="str">当前字符串。</param>
 	/// <returns>当前字符串对应的拼音字符串。</returns>
 	public static string? ToPinYinUppercase(
-		this string? str)
+	    this string? str)
 	{
 		return ToPinYin(str, true);
 	}
@@ -89,8 +89,8 @@ public static class StringExtension
 	/// <param name="isNeedUpperCase">是否返回大写字母的拼音字符串。</param>
 	/// <returns>当前字符串对应的首字母拼音字符串。</returns>
 	public static string? ToPinYinFirstChar(
-		this string? str,
-		bool isNeedUpperCase = true)
+	    this string? str,
+	    bool isNeedUpperCase = true)
 	{
 		if (string.IsNullOrEmpty(str))
 		{
@@ -98,10 +98,10 @@ public static class StringExtension
 		}
 
 		var pinYin = ChinesePinYinInfo.GetPinYinOfString(
-			str,
-			true);
+		    str,
+		    true);
 		if (isNeedUpperCase
-			&& pinYin != null)
+		    && pinYin != null)
 		{
 			pinYin = pinYin.ToUpper();
 		}
@@ -114,7 +114,7 @@ public static class StringExtension
 	/// <param name="str">当前字符串。</param>
 	/// <returns>当前字符串对应的首字母拼音字符串。</returns>
 	public static string? ToPinYinFirstCharUppercase(
-		this string? str)
+	    this string? str)
 	{
 		return ToPinYinFirstChar(str, true);
 	}

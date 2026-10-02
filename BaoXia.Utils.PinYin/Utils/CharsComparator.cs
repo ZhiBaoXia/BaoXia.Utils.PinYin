@@ -29,11 +29,11 @@
 				return -1;
 			}
 			else if (charsA != null
-				&& charsB != null)
+			    && charsB != null)
 			{
 				for (var charIndex = 0;
-					charIndex < charsALength;
-					charIndex++)
+				    charIndex < charsALength;
+				    charIndex++)
 				{
 					var charA = charsA[charIndex];
 					var charB = charsB[charIndex];
